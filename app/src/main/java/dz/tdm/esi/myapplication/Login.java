@@ -11,9 +11,7 @@ public class Login extends AppCompatActivity {
 
 
     private TextView sinscrire;
-    private TextView fb;
-    private TextView plusTard;
-    private EditText email;
+    private EditText numPermis;
     private EditText password;
     private TextView buttonsignin;
 
@@ -26,34 +24,19 @@ public class Login extends AppCompatActivity {
 
 
         sinscrire = (TextView) findViewById(R.id.inscrire);
-        fb = (TextView)findViewById(R.id.fb);
-        plusTard = (TextView)findViewById(R.id.save);
-        email = (EditText)findViewById(R.id.email);
+        numPermis = (EditText)findViewById(R.id.numPermis);
         password = (EditText)findViewById(R.id.password);
         buttonsignin = (TextView) findViewById(R.id.buttonsignin);
 
 
-        plusTard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            /*    Splash.user.setEmail("dm_amrine@esi.dz");
-                Splash.user.setNom("AMRINE Moussab Amine");
-                Splash.user.setPermis(new Permis("B","2453954"));
-                Splash.user.getCarteGris().add(new CarteGris("928474098",
-                        "817829878",
-                        "015932 200 16"));
-                Intent it = new Intent(Login.this, Home.class);
-                startActivity(it);*/
-            }
-        });
 
         sinscrire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-              /*  Intent it = new Intent(Login.this, SignUp.class);
-                startActivity(it);*/
+                Intent it = new Intent(Login.this, SignUp.class);
+                startActivity(it);
             }
         });
 
