@@ -119,7 +119,7 @@
             android:drawableLeft="@drawable/ic_shapes_2"
             android:drawablePadding="16dp"
             android:hint="@string/e_mail"
-            android:inputType="text"
+            android:inputType="text|number"
             android:padding="12dp"
             android:textColor="#000"
             tools:layout_editor_absoluteX="166dp"

@@ -16,6 +16,10 @@ public class User {
     private List<Vehicule> vehicules;
     private List<Dossier> dossiers;
 
+    public User(){
+
+    }
+
     public User(Long id, String userName, String numTel, String email, String mdp, String numPermis) {
         this.id = id;
         this.userName = userName;
@@ -95,5 +99,19 @@ public class User {
 
     public void setDossiers(List<Dossier> dossiers) {
         this.dossiers = dossiers;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", numTel='" + numTel + '\'' +
+                ", email='" + email + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", numPermis='" + numPermis + '\'' +
+                ", vehicules=" + vehicules +
+                ", dossiers=" + dossiers +
+                '}';
     }
 }

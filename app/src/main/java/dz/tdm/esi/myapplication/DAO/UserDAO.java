@@ -13,7 +13,7 @@ import dz.tdm.esi.myapplication.models.User;
  * Created by Amine on 20/05/2017.
  */
 
-public class userDAO extends DAOBase {
+public class UserDAO extends DAOBase {
 
 
 
@@ -37,10 +37,14 @@ public class userDAO extends DAOBase {
 
     public static final String TABLE_DROP =  "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
 
-    public userDAO(Context pContext) {
+    public UserDAO(Context pContext) {
         super(pContext);
         open();
         getDb().execSQL(TABLE_CREATE);
+    }
+
+    public void drop(){
+        getDb().execSQL(TABLE_DROP);
     }
 
     public void ajouter(User user) {
@@ -67,13 +71,13 @@ public class userDAO extends DAOBase {
         value.put(EMAIL, user.getEmail());
         value.put(MDP, user.getMdp());
         value.put(NUM_PERMIS, user.getNumPermis());
-        mDb.update(TABLE_NAME, value, KEY  + " = ?", new String[] {String.valueOf(user.getId())});
+        mDb.update(TABLE_NAME, value, NUM_PERMIS  + " = ?", new String[] {String.valueOf(user.getNumPermis())});
 
     }
 
-    public User selectionner(long id) {
+    public User selectionner(String NUMPERMIS) {
         // CODE
-        Cursor cursor = mDb.rawQuery("select * from " + TABLE_NAME + " where " + KEY +" = ?", new String[]{String.valueOf(id)});
+        Cursor cursor = mDb.rawQuery("select * from " + TABLE_NAME + " where " + NUM_PERMIS +" = ?", new String[]{NUMPERMIS});
 
         cursor.moveToFirst();
 
@@ -89,7 +93,7 @@ public class userDAO extends DAOBase {
         return user;
     }
 
-    public List getFournisseurs() {
+    public List getUsers() {
         List<User> users = new ArrayList<User>();
 
         // Name of the columns we want to select
