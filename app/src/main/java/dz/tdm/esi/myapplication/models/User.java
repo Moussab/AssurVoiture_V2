@@ -16,6 +16,14 @@ public class User {
     private List<Vehicule> vehicules;
     private List<Dossier> dossiers;
 
+    public User(Long id, String userName, String numTel, String email, String mdp, String numPermis) {
+        this.id = id;
+        this.userName = userName;
+        this.numTel = numTel;
+        this.email = email;
+        this.mdp = mdp;
+        this.numPermis = numPermis;
+    }
 
     public User(String userName, String numTel, String email, String mdp, String numPermis) {
         this.userName = userName;
