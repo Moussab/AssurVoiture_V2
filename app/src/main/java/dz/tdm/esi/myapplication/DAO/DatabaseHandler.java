@@ -16,10 +16,6 @@ public class DatabaseHandler  extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
-        super(context, name, factory, version, errorHandler);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 

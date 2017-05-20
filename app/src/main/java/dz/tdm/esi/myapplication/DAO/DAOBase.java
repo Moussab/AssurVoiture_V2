@@ -28,10 +28,6 @@ public abstract class DAOBase {
         return mDb;
     }
 
-    public void close() {
-        mDb.close();
-    }
-
     public SQLiteDatabase getDb() {
         return mDb;
     }
