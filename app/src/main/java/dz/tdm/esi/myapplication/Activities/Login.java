@@ -1,16 +1,13 @@
-package dz.tdm.esi.myapplication;
+package dz.tdm.esi.myapplication.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,9 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-import java.util.List;
-
 import dz.tdm.esi.myapplication.DAO.UserDAO;
+import dz.tdm.esi.myapplication.R;
 import dz.tdm.esi.myapplication.Util.Util;
 import dz.tdm.esi.myapplication.models.User;
 
@@ -81,9 +77,9 @@ public class Login extends AppCompatActivity {
                         password.getText().toString().isEmpty()){
                     Util.alert(Login.this,"Remplir les champs vide !").show();
                 }else{
-                    DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("AssurVoiture").child(numPermis.getText().toString());
+                    DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("AssurVoiture").child(numPermis.getText().toString().trim()).child("client");
                     scoresRef.keepSynced(true);
-                    scoresRef.addValueEventListener(new ValueEventListener() {
+                    scoresRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             user = dataSnapshot.getValue(User.class);
@@ -98,10 +94,7 @@ public class Login extends AppCompatActivity {
                     });
                 }
 
-                if (user == null && userDAO.getUsers().size() == 0){
-                    aBoolean = true;
-                    Util.alert(Login.this,"Veuillez activé votre connexion internet, sinon si vous êtes un nouveau client Veuillez s'inscrire !").show();
-                }
+
 
             }
         });
@@ -117,7 +110,10 @@ public class Login extends AppCompatActivity {
             editor.putString("user", jsonInString);
             editor.commit();
 
-            userDAO.modifier(user);
+            if(userDAO.getUsers().size() == 0){
+                userDAO.ajouter(user);
+            }else
+                userDAO.modifier(user);
 
             if (user.getMdp().toString().compareTo(password.getText().toString()) == 0 &&
                     user.getNumPermis().toString().compareTo(numPermis.getText().toString()) == 0) {

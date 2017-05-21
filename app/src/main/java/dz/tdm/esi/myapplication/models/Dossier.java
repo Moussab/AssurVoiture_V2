@@ -4,7 +4,7 @@ package dz.tdm.esi.myapplication.models;
  * Created by Amine on 20/05/2017.
  */
 
-class Dossier {
+public class Dossier {
 
     private String numeroPermis;
     private String nomConducteur;

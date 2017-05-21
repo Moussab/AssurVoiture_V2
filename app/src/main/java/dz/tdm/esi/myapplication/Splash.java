@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import dz.tdm.esi.myapplication.Activities.Login;
 
 public class Splash extends AppCompatActivity {
 

@@ -1,9 +1,7 @@
-package dz.tdm.esi.myapplication;
+package dz.tdm.esi.myapplication.Activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import dz.tdm.esi.myapplication.DAO.UserDAO;
+import dz.tdm.esi.myapplication.R;
 import dz.tdm.esi.myapplication.Util.Util;
 import dz.tdm.esi.myapplication.models.User;
 
@@ -74,7 +73,7 @@ public class SignUp extends AppCompatActivity {
 
                     DatabaseReference child;
                     myRef.keepSynced(true);
-                    child = myRef.child(user.getNumPermis());
+                    child = myRef.child(user.getNumPermis()).child("client");
                     child.setValue(user);
 
                     Gson gson = new Gson();
@@ -85,7 +84,7 @@ public class SignUp extends AppCompatActivity {
 
                     userDAO.ajouter(user);
 
-                    Intent it = new Intent(SignUp.this, VehiculeList.class);
+                    Intent it = new Intent(SignUp.this, VehiculeAdd.class);
                     startActivity(it);
                     onBackPressed();
 

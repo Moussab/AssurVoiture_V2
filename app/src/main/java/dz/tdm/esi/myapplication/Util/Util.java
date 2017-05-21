@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
-import dz.tdm.esi.myapplication.SignUp;
-
 /**
  * Created by Amine on 20/05/2017.
  */

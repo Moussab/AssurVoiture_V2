@@ -4,13 +4,15 @@ package dz.tdm.esi.myapplication.models;
  * Created by Amine on 20/05/2017.
  */
 
-class Vehicule {
+public class Vehicule {
 
     private String nom;
     private String categorie;
     private String numero;
     private String pays;
     private String matricule;
+
+    public Vehicule(){}
 
     public Vehicule(String nom, String categorie, String numero, String pays, String matricule) {
         this.nom = nom;
