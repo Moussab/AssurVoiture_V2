@@ -70,6 +70,7 @@ public class VehiculeList extends AppCompatActivity {
                 for (int i = 0; i< cpt; i++){
                     DataSnapshot vehiculeDataSnapshot = dataSnapshot.child(String.valueOf(i));
                     Vehicule vehicule = vehiculeDataSnapshot.getValue(Vehicule.class);
+                    vehicule.setId(i);
                     vehicules.add(vehicule);
                 }
 

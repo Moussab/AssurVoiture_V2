@@ -6,6 +6,7 @@ package dz.tdm.esi.myapplication.models;
 
 public class Vehicule {
 
+    private int id;
     private String nom;
     private String categorie;
     private String numero;
@@ -20,6 +21,14 @@ public class Vehicule {
         this.numero = numero;
         this.pays = pays;
         this.matricule = matricule;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {

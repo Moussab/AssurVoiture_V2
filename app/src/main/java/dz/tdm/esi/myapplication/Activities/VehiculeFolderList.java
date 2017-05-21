@@ -1,5 +1,6 @@
 package dz.tdm.esi.myapplication.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class VehiculeFolderList extends AppCompatActivity {
 
     ConstraintLayout emptyFolder;
 
-    FloatingActionButton addVehicule;
+    FloatingActionButton addDosier, updateVehicule;
     FirebaseDatabase database;
     DatabaseReference myRef;
     private List<Dossier> dossiers = new ArrayList<>();
@@ -77,10 +78,8 @@ public class VehiculeFolderList extends AppCompatActivity {
         foldersListe = (RecyclerView)findViewById(R.id.foldersListe);
         emptyFolder = (ConstraintLayout)findViewById(R.id.emptyFolder);
 
-        database = FirebaseDatabase.getInstance();
+
         myRef = database.getReference("AssurVoiture").child(user.getNumPermis()).child("Dossiers");
-
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -113,5 +112,43 @@ public class VehiculeFolderList extends AppCompatActivity {
             }
         });
 
+
+        updateVehicule = (FloatingActionButton)findViewById(R.id.modifierVehicule);
+        updateVehicule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VehiculeFolderList.this, UpdateCar.class);
+                startActivity(intent);
+            }
+        });
+
+        addDosier = (FloatingActionButton) findViewById(R.id.addDosier);
+        addDosier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VehiculeFolderList.this, AddDossier.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Vehicule vehicule = null;
+        SharedPreferences prefs = getSharedPreferences("vehicule", MODE_PRIVATE);
+        String restoredText = prefs.getString("vehicule", null);
+        if (restoredText != null) {
+            Gson gson = new Gson();
+            vehicule = gson.fromJson(restoredText, Vehicule.class);
+        }
+        nom.setText(vehicule.getNom());
+        categorie.setText(vehicule.getCategorie());
+        numero.setText(vehicule.getNumero());
+        pays.setText(vehicule.getPays());
+        matricule.setText(vehicule.getMatricule());
+
+        super.onBackPressed();
     }
 }

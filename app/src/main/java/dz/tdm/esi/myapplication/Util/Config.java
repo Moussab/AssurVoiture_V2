@@ -6,5 +6,5 @@ package dz.tdm.esi.myapplication.Util;
 
 public class Config {
 
-    public static Long MAX_ID_VEHICULE;
+    public static int MAX_ID_VEHICULE;
 }

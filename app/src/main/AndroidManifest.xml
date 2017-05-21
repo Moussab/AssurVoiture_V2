@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.SignUp" />
-        <activity android:name=".Activities.VehiculeList">
-
-        </activity>
-        <activity android:name=".Activities.VehiculeAdd"></activity>
-        <activity android:name=".Activities.VehiculeFolderList"></activity>
+        <activity android:name=".Activities.VehiculeList" />
+        <activity android:name=".Activities.VehiculeAdd" />
+        <activity android:name=".Activities.VehiculeFolderList" />
+        <activity android:name=".Activities.UpdateCar" />
+        <activity android:name=".Activities.AddDossier"></activity>
     </application>
 
 </manifest>

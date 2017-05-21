@@ -21,13 +21,12 @@ import dz.tdm.esi.myapplication.Util.Util;
 import dz.tdm.esi.myapplication.models.User;
 import dz.tdm.esi.myapplication.models.Vehicule;
 
-public class VehiculeAdd extends AppCompatActivity {
-
+public class UpdateCar extends AppCompatActivity {
     EditText nomVehicule,
-             categorie,
-             niv,
-             pays,
-             matricule;
+            categorie,
+            niv,
+            pays,
+            matricule;
 
     Button addbtn;
 
@@ -35,14 +34,20 @@ public class VehiculeAdd extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vehicule_add);
-        getSupportActionBar().setTitle("Ajouter un vehicule");
+        setContentView(R.layout.activity_update_car);
+        getSupportActionBar().setTitle("Modifier un vehicule");
 
         database = FirebaseDatabase.getInstance();
+
+        SharedPreferences prefs = getSharedPreferences("vehicule", MODE_PRIVATE);
+        String restoredText = prefs.getString("vehicule", null);
+        if (restoredText != null) {
+            Gson gson = new Gson();
+            vehicule = gson.fromJson(restoredText, Vehicule.class);
+        }
 
 
         nomVehicule = (EditText)findViewById(R.id.nomVehicule);
@@ -51,22 +56,26 @@ public class VehiculeAdd extends AppCompatActivity {
         pays = (EditText)findViewById(R.id.pays);
         matricule = (EditText)findViewById(R.id.matricule);
 
-        addbtn = (Button) findViewById(R.id.addbtn);
 
+        nomVehicule.setText(vehicule.getNom());
+        categorie.setText(vehicule.getCategorie());
+        niv.setText(vehicule.getNumero());
+        pays.setText(vehicule.getPays());
+        matricule.setText(vehicule.getMatricule());
+
+        addbtn = (Button) findViewById(R.id.addbtn);
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (nomVehicule.getText().toString().isEmpty() || categorie.getText().toString().isEmpty() ||
                         niv.getText().toString().isEmpty() || pays.getText().toString().isEmpty() || matricule.getText().toString().isEmpty()){
-                    Util.alert(VehiculeAdd.this,"Veuillez remplir tout les champs !").show();
+                    Util.alert(UpdateCar.this,"Veuillez remplir tout les champs !").show();
                 }else{
-                    vehicule = new Vehicule(
-                            nomVehicule.getText().toString(),
-                            categorie.getText().toString(),
-                            niv.getText().toString(),
-                            pays.getText().toString(),
-                            matricule.getText().toString()
-                    );
+                    vehicule.setNom(nomVehicule.getText().toString());
+                    vehicule.setCategorie(categorie.getText().toString());
+                    vehicule.setNumero(niv.getText().toString());
+                    vehicule.setPays(pays.getText().toString());
+                    vehicule.setMatricule(matricule.getText().toString());
 
                     User user = null;
                     SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
@@ -76,29 +85,21 @@ public class VehiculeAdd extends AppCompatActivity {
                         user = gson.fromJson(restoredText, User.class);
                     }
 
+                    DatabaseReference child;
                     myRef = database.getReference("AssurVoiture").child(user.getNumPermis()).child("Vehicules");
-                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            Config.MAX_ID_VEHICULE = (int) dataSnapshot.getChildrenCount();
+                    myRef.keepSynced(true);
+                    child = myRef.child(String.valueOf(vehicule.getId()));
+                    child.setValue(vehicule);
 
-                            DatabaseReference child;
-                            myRef.keepSynced(true);
-                            child = myRef.child(String.valueOf(Config.MAX_ID_VEHICULE));
-                            vehicule.setId(Config.MAX_ID_VEHICULE);
-                            child.setValue(vehicule);
+                    Gson gson = new Gson();
+                    String jsonInString = gson.toJson(vehicule);
+                    SharedPreferences.Editor editor = getSharedPreferences("vehicule", MODE_PRIVATE).edit();
+                    editor.putString("vehicule", jsonInString);
+                    editor.commit();
 
-                            Intent it = new Intent(VehiculeAdd.this, VehiculeList.class);
-                            startActivity(it);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError error) {}
-                    });
-
-
+                    onBackPressed();
                 }
             }
         });
-
     }
 }
