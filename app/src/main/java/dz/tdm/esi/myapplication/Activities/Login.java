@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
             User user = gson.fromJson(restoredText, User.class);
             User user1 = userDAO.selectionner(user.getNumPermis());
             if (user.getMdp().compareTo(user1.getMdp()) == 0){
-                Intent it = new Intent(Login.this, VehiculeList.class);
+                Intent it = new Intent(Login.this, FolderList.class);
                 startActivity(it);
             }
         }
@@ -121,7 +121,7 @@ public class Login extends AppCompatActivity {
             }
 
             if (b) {
-                Intent it = new Intent(Login.this, VehiculeList.class);
+                Intent it = new Intent(Login.this, FolderList.class);
                 startActivity(it);
                 user = null;
             } else

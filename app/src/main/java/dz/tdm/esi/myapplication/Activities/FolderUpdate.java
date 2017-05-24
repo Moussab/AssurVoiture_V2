@@ -1,6 +1,5 @@
 package dz.tdm.esi.myapplication.Activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,20 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import dz.tdm.esi.myapplication.R;
-import dz.tdm.esi.myapplication.Util.Config;
 import dz.tdm.esi.myapplication.Util.Util;
+import dz.tdm.esi.myapplication.models.Dossier;
 import dz.tdm.esi.myapplication.models.User;
 import dz.tdm.esi.myapplication.models.Vehicule;
 
-public class UpdateCar extends AppCompatActivity {
+public class FolderUpdate extends AppCompatActivity {
     EditText nomVehicule,
             categorie,
             niv,
@@ -34,6 +32,9 @@ public class UpdateCar extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,7 @@ public class UpdateCar extends AppCompatActivity {
             public void onClick(View v) {
                 if (nomVehicule.getText().toString().isEmpty() || categorie.getText().toString().isEmpty() ||
                         niv.getText().toString().isEmpty() || pays.getText().toString().isEmpty() || matricule.getText().toString().isEmpty()){
-                    Util.alert(UpdateCar.this,"Veuillez remplir tout les champs !").show();
+                    Util.alert(FolderUpdate.this,"Veuillez remplir tout les champs !").show();
                 }else{
                     vehicule.setNom(nomVehicule.getText().toString());
                     vehicule.setCategorie(categorie.getText().toString());

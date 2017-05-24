@@ -11,7 +11,6 @@ public class Dossier {
     private String vehiculeConducteur;
     private String matriculeConducteur;
     private String date;
-    private String type;
     private EtatDossier etat;
     private String imageURL;
     private String videoURL;
@@ -22,8 +21,10 @@ public class Dossier {
     private String matriculeAdversaire;
     private int id;
 
+    public Dossier(){}
+
     public Dossier(int id,String numeroPermis, String nomConducteur, String vehiculeConducteur, String matriculeConducteur,
-                   String date, String type, EtatDossier etat, String imageURL, String videoURL, String montant,
+                   String date, EtatDossier etat, String imageURL, String videoURL, String montant,
                    String nomAdversaire, String numPermisAdversaire, String vehiculeAdversaire, String matriculeAdversaire) {
         this.id = id;
         this.numeroPermis = numeroPermis;
@@ -31,7 +32,6 @@ public class Dossier {
         this.vehiculeConducteur = vehiculeConducteur;
         this.matriculeConducteur = matriculeConducteur;
         this.date = date;
-        this.type = type;
         this.etat = etat;
         this.imageURL = imageURL;
         this.videoURL = videoURL;
@@ -42,7 +42,7 @@ public class Dossier {
         this.matriculeAdversaire = matriculeAdversaire;
     }
     public Dossier(String numeroPermis, String nomConducteur, String vehiculeConducteur, String matriculeConducteur,
-                   String date, String type, EtatDossier etat, String imageURL, String videoURL, String montant,
+                   String date, EtatDossier etat, String imageURL, String videoURL, String montant,
                    String nomAdversaire, String numPermisAdversaire, String vehiculeAdversaire, String matriculeAdversaire) {
 
         this.numeroPermis = numeroPermis;
@@ -50,7 +50,6 @@ public class Dossier {
         this.vehiculeConducteur = vehiculeConducteur;
         this.matriculeConducteur = matriculeConducteur;
         this.date = date;
-        this.type = type;
         this.etat = etat;
         this.imageURL = imageURL;
         this.videoURL = videoURL;
@@ -62,10 +61,9 @@ public class Dossier {
     }
 
 
-    public Dossier(String numeroPermis, String date, String type, EtatDossier etat) {
+    public Dossier(String numeroPermis, String date, EtatDossier etat) {
         this.numeroPermis = numeroPermis;
         this.date = date;
-        this.type = type;
         this.etat = etat;
     }
 
@@ -109,13 +107,6 @@ public class Dossier {
         this.date = date;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public EtatDossier getEtat() {
         return etat;
@@ -164,10 +155,10 @@ public class Dossier {
     public void setNumPermisAdversaire(String numPermisAdversaire) {
         this.numPermisAdversaire = numPermisAdversaire;
     }
-
     public String getVehiculeAdversaire() {
         return vehiculeAdversaire;
     }
+
 
     public void setVehiculeAdversaire(String vehiculeAdversaire) {
         this.vehiculeAdversaire = vehiculeAdversaire;

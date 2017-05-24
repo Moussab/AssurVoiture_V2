@@ -84,7 +84,7 @@ public class SignUp extends AppCompatActivity {
 
                     userDAO.ajouter(user);
 
-                    Intent it = new Intent(SignUp.this, VehiculeAdd.class);
+                    Intent it = new Intent(SignUp.this, FolderList.class);
                     startActivity(it);
                     onBackPressed();
 
