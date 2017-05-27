@@ -13,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -56,8 +58,9 @@ public class FolderList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicule_list);
         getSupportActionBar().setTitle("Liste des Dossiers");
-
         User user = null;
+       // String notification = FirebaseInstanceId.getInstance().getToken();
+       // Log.d("youcef", "fcm token: " + notification);
         SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
         String restoredText = prefs.getString("user", null);
         if (restoredText != null) {

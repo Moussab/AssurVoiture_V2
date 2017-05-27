@@ -64,7 +64,7 @@ public class Splash extends AppCompatActivity implements
             @Override
             public void run() {
 
-                Intent i = new Intent(Splash.this, FolderList.class);
+                Intent i = new Intent(Splash.this, Login.class);
                 startActivity(i);
                 finish();
             }
@@ -117,6 +117,7 @@ public class Splash extends AppCompatActivity implements
         if (!mGoogleApiClient.isConnected()) {
             Log.e("youcef","error");
         }
+        if(mGeofenceList.size()>0)
         try {
             LocationServices.GeofencingApi.addGeofences(
                     mGoogleApiClient,
