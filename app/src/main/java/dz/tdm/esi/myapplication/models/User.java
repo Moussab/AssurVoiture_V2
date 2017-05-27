@@ -9,10 +9,8 @@ import java.util.List;
 public class User {
     private Long id;
     private String userName;
-    private String numTel;
     private String email;
-    private String mdp;
-    private String  numPermis;
+    private String token;
     private List<Vehicule> vehicules;
     private List<Dossier> dossiers;
 
@@ -20,21 +18,17 @@ public class User {
 
     }
 
-    public User(Long id, String userName, String numTel, String email, String mdp, String numPermis) {
+    public User(Long id, String userName, String email, String token) {
         this.id = id;
         this.userName = userName;
-        this.numTel = numTel;
         this.email = email;
-        this.mdp = mdp;
-        this.numPermis = numPermis;
+        this.token = token;
     }
 
-    public User(String userName, String numTel, String email, String mdp, String numPermis) {
+    public User(String userName, String email, String token) {
         this.userName = userName;
-        this.numTel = numTel;
         this.email = email;
-        this.mdp = mdp;
-        this.numPermis = numPermis;
+        this.token = token;
     }
 
     public Long getId() {
@@ -53,36 +47,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getNumTel() {
-        return numTel;
-    }
-
-    public void setNumTel(String numTel) {
-        this.numTel = numTel;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public String getNumPermis() {
-        return numPermis;
-    }
-
-    public void setNumPermis(String numPermis) {
-        this.numPermis = numPermis;
     }
 
     public List<Vehicule> getVehicules() {
@@ -106,12 +76,18 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", numTel='" + numTel + '\'' +
                 ", email='" + email + '\'' +
-                ", mdp='" + mdp + '\'' +
-                ", numPermis='" + numPermis + '\'' +
+                ", token='" + token + '\'' +
                 ", vehicules=" + vehicules +
                 ", dossiers=" + dossiers +
                 '}';
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

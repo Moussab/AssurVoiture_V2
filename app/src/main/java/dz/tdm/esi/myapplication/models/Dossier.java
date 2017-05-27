@@ -6,51 +6,26 @@ package dz.tdm.esi.myapplication.models;
 
 public class Dossier {
 
-    private String numeroPermis;
-    private String nomConducteur;
-    private String vehiculeConducteur;
-    private String matriculeConducteur;
-    private String date;
+    private String date = "";
     private EtatDossier etat;
-    private String imageURL;
-    private String videoURL;
-    private String montant;
-    private String nomAdversaire;
-    private String numPermisAdversaire;
-    private String vehiculeAdversaire;
-    private String matriculeAdversaire;
+    private String imageURL = "";
+    private String videoURL = "";
+    private String montant = "";
+    private String nomAdversaire = "";
+    private String numPermisAdversaire = "";
+    private String vehiculeAdversaire = "";
+    private String matriculeAdversaire = "";
     private int id;
 
     public Dossier(){}
 
-    public Dossier(int id,String numeroPermis, String nomConducteur, String vehiculeConducteur, String matriculeConducteur,
-                   String date, EtatDossier etat, String imageURL, String videoURL, String montant,
-                   String nomAdversaire, String numPermisAdversaire, String vehiculeAdversaire, String matriculeAdversaire) {
+    public Dossier(int id, String date, String etat,
+                   String imageURL, String videoURL, String montant,
+                   String nomAdversaire, String numPermisAdversaire,
+                   String vehiculeAdversaire, String matriculeAdversaire) {
         this.id = id;
-        this.numeroPermis = numeroPermis;
-        this.nomConducteur = nomConducteur;
-        this.vehiculeConducteur = vehiculeConducteur;
-        this.matriculeConducteur = matriculeConducteur;
         this.date = date;
-        this.etat = etat;
-        this.imageURL = imageURL;
-        this.videoURL = videoURL;
-        this.montant = montant;
-        this.nomAdversaire = nomAdversaire;
-        this.numPermisAdversaire = numPermisAdversaire;
-        this.vehiculeAdversaire = vehiculeAdversaire;
-        this.matriculeAdversaire = matriculeAdversaire;
-    }
-    public Dossier(String numeroPermis, String nomConducteur, String vehiculeConducteur, String matriculeConducteur,
-                   String date, EtatDossier etat, String imageURL, String videoURL, String montant,
-                   String nomAdversaire, String numPermisAdversaire, String vehiculeAdversaire, String matriculeAdversaire) {
-
-        this.numeroPermis = numeroPermis;
-        this.nomConducteur = nomConducteur;
-        this.vehiculeConducteur = vehiculeConducteur;
-        this.matriculeConducteur = matriculeConducteur;
-        this.date = date;
-        this.etat = etat;
+        this.etat = EtatDossier.parsTo(etat);
         this.imageURL = imageURL;
         this.videoURL = videoURL;
         this.montant = montant;
@@ -60,43 +35,33 @@ public class Dossier {
         this.matriculeAdversaire = matriculeAdversaire;
     }
 
+    public Dossier(String date, String etat, String imageURL,
+                   String videoURL, String montant,
+                   String nomAdversaire, String numPermisAdversaire,
+                   String vehiculeAdversaire, String matriculeAdversaire) {
 
-    public Dossier(String numeroPermis, String date, EtatDossier etat) {
-        this.numeroPermis = numeroPermis;
         this.date = date;
-        this.etat = etat;
+        this.etat = EtatDossier.parsTo(etat);
+        this.imageURL = imageURL;
+        this.videoURL = videoURL;
+        this.montant = montant;
+        this.nomAdversaire = nomAdversaire;
+        this.numPermisAdversaire = numPermisAdversaire;
+        this.vehiculeAdversaire = vehiculeAdversaire;
+        this.matriculeAdversaire = matriculeAdversaire;
     }
 
-    public String getNumeroPermis() {
-        return numeroPermis;
+    public Dossier(String date, String etat, String imageURL, String videoURL, String montant) {
+        this.date = date;
+        this.etat = EtatDossier.parsTo(etat);
+        this.imageURL = imageURL;
+        this.videoURL = videoURL;
+        this.montant = montant;
     }
 
-    public void setNumeroPermis(String numeroPermis) {
-        this.numeroPermis = numeroPermis;
-    }
-
-    public String getNomConducteur() {
-        return nomConducteur;
-    }
-
-    public void setNomConducteur(String nomConducteur) {
-        this.nomConducteur = nomConducteur;
-    }
-
-    public String getVehiculeConducteur() {
-        return vehiculeConducteur;
-    }
-
-    public void setVehiculeConducteur(String vehiculeConducteur) {
-        this.vehiculeConducteur = vehiculeConducteur;
-    }
-
-    public String getMatriculeConducteur() {
-        return matriculeConducteur;
-    }
-
-    public void setMatriculeConducteur(String matriculeConducteur) {
-        this.matriculeConducteur = matriculeConducteur;
+    public Dossier(String date, String etat) {
+        this.date = date;
+        this.etat = EtatDossier.valueOf(etat);
     }
 
     public String getDate() {
@@ -178,6 +143,22 @@ public class Dossier {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Dossier{" +
+                "date='" + date + '\'' +
+                ", etat=" + etat +
+                ", imageURL='" + imageURL + '\'' +
+                ", videoURL='" + videoURL + '\'' +
+                ", montant='" + montant + '\'' +
+                ", nomAdversaire='" + nomAdversaire + '\'' +
+                ", numPermisAdversaire='" + numPermisAdversaire + '\'' +
+                ", vehiculeAdversaire='" + vehiculeAdversaire + '\'' +
+                ", matriculeAdversaire='" + matriculeAdversaire + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
 

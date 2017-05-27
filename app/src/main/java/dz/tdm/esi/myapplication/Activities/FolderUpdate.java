@@ -87,7 +87,7 @@ public class FolderUpdate extends AppCompatActivity {
                     }
 
                     DatabaseReference child;
-                    myRef = database.getReference("AssurVoiture").child(user.getNumPermis()).child("Vehicules");
+                    myRef = database.getReference("AssurVoiture").child(user.getToken()).child("Vehicules");
                     myRef.keepSynced(true);
                     child = myRef.child(String.valueOf(vehicule.getId()));
                     child.setValue(vehicule);

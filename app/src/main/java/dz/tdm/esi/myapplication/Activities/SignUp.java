@@ -12,13 +12,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
-import dz.tdm.esi.myapplication.DAO.UserDAO;
+
 import dz.tdm.esi.myapplication.R;
 import dz.tdm.esi.myapplication.Util.Util;
 import dz.tdm.esi.myapplication.models.User;
 
 public class SignUp extends AppCompatActivity {
-
+/*
     TextView suivant;
 
     EditText userName,
@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
-
+/*
         database = FirebaseDatabase.getInstance();
         database.setPersistenceEnabled(true);
         myRef = database.getReference("AssurVoiture");
@@ -91,7 +91,9 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
-    }
 
+
+    }
+*/
 
 }

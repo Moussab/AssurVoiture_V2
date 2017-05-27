@@ -28,6 +28,7 @@ import java.util.List;
 
 import dz.tdm.esi.myapplication.Adapters.FolderAdapter;
 import dz.tdm.esi.myapplication.Adapters.VehiculeAdapter;
+import dz.tdm.esi.myapplication.Adapters.ViewPagerAdapter;
 import dz.tdm.esi.myapplication.Fragments.Ouvert;
 import dz.tdm.esi.myapplication.Fragments.Traitement;
 import dz.tdm.esi.myapplication.R;
@@ -38,7 +39,7 @@ import dz.tdm.esi.myapplication.models.User;
 
 public class FolderList extends AppCompatActivity {
 
-    FloatingActionButton addVehicule;
+
     RecyclerView folderList;
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -130,14 +131,7 @@ public class FolderList extends AppCompatActivity {
         }));
 */
 
-     /*   addVehicule = (FloatingActionButton)findViewById(R.id.addVehicule);
-        addVehicule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(FolderList.this, AddDossier.class);
-                startActivity(it);
-            }
-        });*/
+
 
     }
 
@@ -151,33 +145,11 @@ public class FolderList extends AppCompatActivity {
 
 
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
-
 }

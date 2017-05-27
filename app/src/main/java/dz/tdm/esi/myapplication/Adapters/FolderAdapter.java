@@ -69,9 +69,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(FolderAdapter.MyViewHolder holder, int position) {
-        Dossier vehicule = dossiers.get(position);
-        holder.nom.setText(vehicule.getId());
-        holder.matricule.setText(vehicule.getMatriculeConducteur());
+        Dossier dossier = dossiers.get(position);
+        holder.nom.setText("Dossier N° = "+dossier.getId());
+        holder.matricule.setText(dossier.getDate());
     }
 
     @Override

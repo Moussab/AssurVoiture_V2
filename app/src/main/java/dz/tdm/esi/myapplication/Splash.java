@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import dz.tdm.esi.myapplication.Activities.Login;
 
 public class Splash extends AppCompatActivity {
@@ -16,6 +18,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
+
 
         new Handler().postDelayed(new Runnable() {
 
